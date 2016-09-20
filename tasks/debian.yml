@@ -1,0 +1,12 @@
+---
+# DEBIAN
+
+- name: OpenDKIM is installed via aptitude
+  apt: 
+    name: "{{item}}"
+    state: installed 
+  with_items:
+    - opendkim
+    - libopendbx1-mysql
+  notify:
+    - restart opendkim

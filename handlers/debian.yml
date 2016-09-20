@@ -1,0 +1,11 @@
+---
+
+- name: daemon-reload
+  command: systemctl daemon-reload
+  when: ansible_distribution == "Debian"
+
+- name: debian restart opendkim
+  service: name=opendkim state=restarted
+  when: ansible_distribution == "Debian"
+
+

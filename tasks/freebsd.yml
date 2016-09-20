@@ -1,0 +1,20 @@
+---
+# FreeBSD
+
+- pkgng: 
+    name: opendkim 
+    state: present
+
+- name: Install rc.conf.d scripts
+  template: 
+    src: "rc.conf.d/{{item}}.jj2"
+    dest: "/etc/rc.conf.d/{{item}}"
+  with_items:
+    - milteropendkim
+  notify:
+    - restart opendkim
+
+- name: Make sure opendkim service is enabled
+  service: 
+    name: milter-opendkim 
+    enabled: yes

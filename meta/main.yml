@@ -1,0 +1,30 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: The Mailserver Project
+  description: Provisions OpenDKIM (Domain Keys Identified Mail) sender authentication
+  company: github.com/mailserver
+  license: MIT
+  min_ansible_version: 1.9
+  platforms:
+    - name: Debian
+      versions:
+        - jessie
+        - wheezy
+    - name: Ubuntu
+      versions:
+        - trusty
+    - name: FreeBSD
+      versions:
+        - 9.3
+        - 10.1
+        - 10.2
+        - 10.3
+  galaxy_tags:
+    - mailserver
+    - mail
+    - mta
+    - milter
+    - opendkim
+    - dkim

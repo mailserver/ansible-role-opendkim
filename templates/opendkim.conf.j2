@@ -1,0 +1,19 @@
+InternalHosts      127.0.0.1, ::1
+SigningTable       dsn:mysql://{{opendkim_mysql.user}}:{{opendkim_mysql.pass}}@{{opendkim_mysql.host}}/{{opendkim_mysql.db}}/table={{opendkim_mysql.table}}?keycol=domain?datacol=domain
+KeyTable           dsn:mysql://{{opendkim_mysql.user}}:{{opendkim_mysql.pass}}@{{opendkim_mysql.host}}/{{opendkim_mysql.db}}/table={{opendkim_mysql.table}}?keycol=domain?datacol=domain,dkim_selector,dkim_private_key
+SubDomains         no
+Mode               s
+
+RequiredHeaders    false
+StrictHeaders      false
+
+OversignHeaders    From
+
+On-DNSError        tempfail
+
+Syslog             yes
+# LogWhy
+# MilterDebug
+
+# User paramter defined via command line 
+UMask              002

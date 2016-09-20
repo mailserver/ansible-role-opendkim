@@ -1,0 +1,28 @@
+---
+
+os:
+  prefix: ""
+  logdir: /var/log
+  rundir: /var/run
+
+# TODO: Can we explicitly define socket permissions -> introduce variable to configure group? 
+default_opendkim_config:
+  policy_source: mysql
+  daemon_user: "opendkim"
+  # daemon_user_groups: ["opendkim"]
+  milter_socket:
+    group: "opendkim"
+    path: "{{os.rundir}}/opendkim/opendkim.sock"
+
+opendkim_config_file: "{{os.prefix}}/etc/opendkim.conf"
+
+# mysql credential dictionary (required)
+# opendkim_mysql:
+#   host: ""
+#   user: ""
+#   password: ""
+#   database: "mail"
+#   table: "opendkim"
+
+# List
+additional_group_memberships:
