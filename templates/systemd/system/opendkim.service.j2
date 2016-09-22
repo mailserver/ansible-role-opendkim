@@ -6,7 +6,7 @@ User=root
 Type=simple
 RestartSec=5s
 Restart=on-failure
-ExecStart=/usr/sbin/opendkim -x "{{ opendkim_config_file }}" -f -u "{{ _opendkim_config.daemon_user }}:{{ _opendkim_config.milter_socket.group }}" -p "local:{{ _opendim_config.milter_socket.path }}"
+ExecStart=/usr/sbin/opendkim -x "{{ opendkim_config_file }}" -f -u "{{ _opendkim_config.daemon_user }}:{{ _opendkim_config.milter.group }}" -p "local:{{ _opendim_config.milter.socket_path }}"
 
 [Install]
 WantedBy=multi-user.target

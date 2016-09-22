@@ -2,4 +2,3 @@
 
 - name: restart opendkim
   service: name=milter-opendkim state=restarted
-  when: ansible_distribution == "FreeBSD"

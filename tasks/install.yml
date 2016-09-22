@@ -1,7 +1,7 @@
 ---
 
-- include: debian.yml
+- include: install.debian.yml
   when: ansible_distribution == "Debian"
 
-- include: freebsd.yml
+- include: install.freebsd.yml
   when: ansible_distribution == "FreeBSD"

@@ -9,10 +9,10 @@ os:
 default_opendkim_config:
   policy_source: mysql
   daemon_user: "opendkim"
-  # daemon_user_groups: ["opendkim"]
-  milter_socket:
-    group: "opendkim"
-    path: "{{os.rundir}}/opendkim/opendkim.sock"
+  daemon_group: "opendkim"
+  milter:
+    group: "milter"
+    socket_path: "{{os.rundir}}/opendkim/opendkim.sock"
 
 opendkim_config_file: "{{os.prefix}}/etc/opendkim.conf"
 
@@ -23,6 +23,3 @@ opendkim_config_file: "{{os.prefix}}/etc/opendkim.conf"
 #   password: ""
 #   database: "mail"
 #   table: "opendkim"
-
-# List
-additional_group_memberships:

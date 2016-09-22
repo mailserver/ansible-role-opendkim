@@ -1,0 +1,19 @@
+---
+
+- name: DKIM daemon and milter goups exist
+  group:
+    name: "{{ item }}"
+    state: present
+    system: yes
+  with_items: "{{ [ _opendkim_config.daemon_group, _opendkim_config.milter.group ] }}"
+
+- name: DKIM daemon user exists and is assigned to additional groups
+  user:
+    name: "{{ _opendkim_config.daemon_user }}"
+    group: "{{ _opendkim_config.daemon_group }}"
+    groups: "{{ _opendkim_config.milter.group }}"
+    append: yes
+    system: yes
+    state: present
+  notify:
+    - restart opendkim

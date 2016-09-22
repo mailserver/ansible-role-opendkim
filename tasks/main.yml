@@ -6,25 +6,6 @@
 - set_fact: _opendkim_config="{{ opendkim_default_config | combine(opendkim_config, recursive=True) }}"
   no_log: true
 
-- include: debian.yml
-  when: ansible_distribution == "Debian"
-
-- include: freebsd.yml
-  when: ansible_distribution == "FreeBSD"
-
-- name: Additional groups are assigned to the DKIM daemon_user
-  user: 
-    name: "{{ daemon_user }}"
-    append: yes
-    groups: "{{item}}"
-  with_items: "{{ _opendkim_config.daemon_user_groups | default([_opendkim_config.milter_socket_group]) }}"
-  notify:
-    - restart opendkim
-
-- name: Sync main config file containing SQL credentials
-  template:
-    src: opendkim.conf.j2 
-    dest: "{{ opendkim_config_file }}" 
-    mode: "u=rw,g=,o="
-  notify:
-    - restart opendkim
+- include: prepare.yml
+- include: install.yml
+- include: configure.yml

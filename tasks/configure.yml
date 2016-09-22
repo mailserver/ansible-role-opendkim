@@ -1,0 +1,9 @@
+---
+
+- name: Configuration including SQL credentials is up to date
+  template:
+    src: opendkim.conf.j2
+    dest: "{{ opendkim_config_file }}" 
+    mode: "u=rw,g=,o="
+  notify:
+    - restart opendkim

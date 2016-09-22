@@ -32,8 +32,7 @@ Examples
     db: "mail"
     table: "opendkim"
   opendkim_config:
-    milter_socket_path: "/var/spool/postfix/milters/opendkim.sock"
-    daemon_user: "opendkim"
-    milter_socket_group: "opendkim"
-    additional_group_memberships: [ "opendkim" ]
+    milter:
+      group: "milter"
+      socket_path: "/var/spool/postfix/milters/opendkim.sock"
 ```
