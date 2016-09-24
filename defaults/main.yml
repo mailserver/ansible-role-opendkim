@@ -6,13 +6,13 @@ os:
   rundir: /var/run
 
 # TODO: Can we explicitly define socket permissions -> introduce variable to configure group? 
-default_opendkim_config:
+opendkim_default_config:
   policy_source: mysql
   daemon_user: "opendkim"
   daemon_group: "opendkim"
   milter:
     group: "milter"
-    socket_path: "{{os.rundir}}/opendkim/opendkim.sock"
+    socket_path: "{{os.rundir}}/milters/opendkim.sock"
 
 opendkim_config_file: "{{os.prefix}}/etc/opendkim.conf"
 
