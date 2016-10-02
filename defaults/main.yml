@@ -17,9 +17,10 @@ opendkim_default_config:
 opendkim_config_file: "{{os.prefix}}/etc/opendkim.conf"
 
 # mysql credential dictionary (required)
-# opendkim_mysql:
-#   host: ""
-#   user: ""
-#   password: ""
-#   database: "mail"
-#   table: "opendkim"
+opendkim_default_mysql:
+  host: "127.0.0.1"
+  port: 3306
+  user: "opendkim"
+  password: ""
+  database: "mail"
+  table: "opendkim"

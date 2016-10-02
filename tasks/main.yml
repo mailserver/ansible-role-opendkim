@@ -3,7 +3,10 @@
 - fail: msg="opendkim_mysql is required"
   when: opendkim_mysql is not defined
 
-- set_fact: _opendkim_config="{{ opendkim_default_config | combine(opendkim_config, recursive=True) }}"
+- set_fact: _opendkim_config="{{ opendkim_default_config | combine((opendkim_config | default({})), recursive=True) }}"
+  no_log: true
+
+- set_fact: _opendkim_mysql="{{ opendkim_default_mysql | combine((opendkim_mysql | default({})), recursive=True) }}"
   no_log: true
 
 - include: prepare.yml

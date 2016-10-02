@@ -1,6 +1,6 @@
 InternalHosts      127.0.0.1, ::1
-SigningTable       dsn:mysql://{{opendkim_mysql.user}}:{{opendkim_mysql.password}}@{{opendkim_mysql.host}}/{{opendkim_mysql.database}}/table={{opendkim_mysql.table}}?keycol=domain?datacol=domain
-KeyTable           dsn:mysql://{{opendkim_mysql.user}}:{{opendkim_mysql.password}}@{{opendkim_mysql.host}}/{{opendkim_mysql.database}}/table={{opendkim_mysql.table}}?keycol=domain?datacol=domain,dkim_selector,dkim_private_key
+SigningTable       dsn:mysql://{{_opendkim_mysql.user}}:{{_opendkim_mysql.password}}@{{_opendkim_mysql.host}}/{{_opendkim_mysql.database}}/table={{_opendkim_mysql.table}}?keycol=domain?datacol=domain
+KeyTable           dsn:mysql://{{_opendkim_mysql.user}}:{{_opendkim_mysql.password}}@{{_opendkim_mysql.host}}/{{_opendkim_mysql.database}}/table={{_opendkim_mysql.table}}?keycol=domain?datacol=domain,dkim_selector,dkim_private_key
 SubDomains         no
 Mode               s
 
