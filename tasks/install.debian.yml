@@ -10,3 +10,35 @@
     - libopendbx1-mysql
   notify:
     - restart opendkim
+
+- stat:
+    path: /etc/init.d/opendkim
+  register: _opendkim_init_script
+
+- name: Debian's default opendkim service is disabled
+  service:
+    name: opendkim
+    state: stopped
+    enabled: false
+  when: _opendkim_init_script.stat.exists
+
+- name: Debian's default opendkim init script is not present
+  file:
+    path: /etc/init.d/opendkim
+    state: absent
+  when: _opendkim_init_script.stat.exists
+
+- name: OpenDKIM systemd service is available
+  template:
+    src: "systemd/system/opendkim.service.j2"
+    dest: "/etc/systemd/system/opendkim.service"
+    owner: root
+    group: root
+    mode: 0766
+  register: _systemd_service_uploaded
+
+- name: OpenDKIM systemd service is enabled
+  service:
+    name: opendkim
+    enabled: true
+    state: started
