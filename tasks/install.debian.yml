@@ -12,21 +12,15 @@
     - restart opendkim
 
 - stat:
-    path: /etc/init.d/opendkim
-  register: _opendkim_init_script
+    path: /etc/systemd/system/opendkim.service
+  register: _opendkim_systemd_service_file
 
 - name: Debian's default opendkim service is disabled
   service:
     name: opendkim
     state: stopped
     enabled: false
-  when: _opendkim_init_script.stat.exists
-
-- name: Debian's default opendkim init script is not present
-  file:
-    path: /etc/init.d/opendkim
-    state: absent
-  when: _opendkim_init_script.stat.exists
+  when: not _opendkim_systemd_service_file.stat.exists
 
 - name: OpenDKIM systemd service is available
   template:
@@ -35,7 +29,6 @@
     owner: root
     group: root
     mode: 0766
-  register: _systemd_service_uploaded
 
 - name: OpenDKIM systemd service is enabled
   service:
