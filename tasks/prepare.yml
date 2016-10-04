@@ -17,3 +17,10 @@
     state: present
   notify:
     - restart opendkim
+
+- name: milter directory exists and is owned by milter group
+  file:
+    path: "{{ _opendkim_config.milter.socket_path | dirname }}"
+    state: directory
+    group: "{{ _opendkim_config.milter.group }}"
+    mode: "g=rwx"
