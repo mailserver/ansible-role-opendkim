@@ -6,4 +6,5 @@
     dest: "{{ opendkim_config_file }}" 
     mode: "u=rw,g=,o="
   notify:
-    - restart opendkim
+    - restart opendkim linux
+    - restart opendkim freebsd

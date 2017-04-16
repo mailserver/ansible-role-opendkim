@@ -12,7 +12,7 @@
   with_items:
     - milteropendkim
   notify:
-    - restart opendkim
+    - restart opendkim freebsd
 
 - name: Make sure opendkim service is enabled
   service: 

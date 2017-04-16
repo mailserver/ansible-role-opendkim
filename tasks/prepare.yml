@@ -16,7 +16,8 @@
     system: yes
     state: present
   notify:
-    - restart opendkim
+    - restart opendkim linux
+    - restart opendkim freebsd
 
 - name: milter directory exists and is owned by milter group
   file:

@@ -1,7 +1,0 @@
----
-
-- name: daemon-reload
-  command: systemctl daemon-reload
-
-- name: debian restart opendkim
-  service: name=opendkim state=restarted

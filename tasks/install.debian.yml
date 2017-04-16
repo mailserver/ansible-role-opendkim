@@ -10,7 +10,7 @@
     - opendkim-tools
     - libopendbx1-mysql
   notify:
-    - restart opendkim
+    - restart opendkim linux
 
 - stat:
     path: /etc/systemd/system/opendkim.service

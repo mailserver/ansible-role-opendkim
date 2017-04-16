@@ -1,7 +1,9 @@
 ---
 
-- include: debian.yml
+- name: restart opendkim linux
+  service: name=opendkim state=restarted
   when: ansible_distribution == "Debian"
 
-- include: freebsd.yml
+- name: restart opendkim freebsd
+  service: name=milter-opendkim state=restarted
   when: ansible_distribution == "FreeBSD"
